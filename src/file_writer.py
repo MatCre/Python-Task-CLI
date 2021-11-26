@@ -1,34 +1,28 @@
-from datetime import datetime
 from file_reader import get_tasks_from_file
 from week_string import week_start_string
-
-import os 
-
-dirname = os.path.dirname(__file__)
-task_file_path = os.path.join(dirname, 'files\\tasks.txt')
-weekreport_file_path = os.path.join(dirname, 'files\\weekly_report.txt')
+import path_finder as my_paths
        
-def write_list_to_file(path,task_list):
+def write_list_to_file(task_list):
     '''Ovewrite the current tasks in the files with the incoming task list'''
 
     #Clear the file
     try:
-        open(path,'w').close()
+        open(my_paths.tasks_file_path,'w').close()
     except FileNotFoundError:
         print("File not found")
 
     #Write the updated task list to the file
     try:
-        with open(path, "a+") as file:
+        with open(my_paths.tasks_file_path, "a+") as file:
                 for task in task_list:
                     file.write(f"{task} \n")
     except FileNotFoundError:
         print("File not found")
 
-def add_task(path):
+def add_task():
     '''Add A Task'''
     
-    tasks = get_tasks_from_file(path)
+    tasks = get_tasks_from_file(my_paths.tasks_file_path)
 
     try :
         while True:
@@ -40,16 +34,16 @@ def add_task(path):
             exit = input("Add another task ?:  Y / N")
 
             if exit.lower() == "n":
-                write_list_to_file(path,tasks)
+                write_list_to_file(tasks)
                 break
     except ValueError:
         print("Enter a valid option")
     finally:
-        write_list_to_file(path,tasks)
+        write_list_to_file(tasks)
     
-def del_task(path):
+def del_task():
     '''Remove a task from current task list'''
-    tasks = get_tasks_from_file(path)
+    tasks = get_tasks_from_file(my_paths.tasks_file_path)
 
     while True:
         try:
@@ -65,32 +59,5 @@ def del_task(path):
         except:
             print("Task Not In List")
     
-    write_list_to_file(path,tasks)
+    write_list_to_file(tasks)
 
-def write_daily_report(path):
-    '''Take daily task report and write to weekly report file'''
-    day = datetime.today().strftime('%A')
-    tasks = get_tasks_from_file(path)
-    task_breakdown_string = ""
-    for task in tasks:
-        task_breakdown_string += f"\n{task.upper()}: "
-        
-    # try:
-    #     with open("./files/weekly_report.txt", "a+") as file:
-    #         file.write(f"On {day} {daily_report}\n")
-    #         file.write(task_breakdown_string)
-    # except FileNotFoundError:
-    #     print("File Not Found")
-
-def write_week_report(week_report):
-    '''Write the report of the week'''
-
-    week_string = week_start_string()
-    try:
-        with open("./files/monthly_report.txt", "a+") as file:
-            file.write(week_string)
-            with open("./files/weekly_report.txt", "r") as week_file:
-                for line in week_file:
-                    file.write(line)       
-    except FileNotFoundError:
-        print("File not found")
