@@ -3,12 +3,6 @@
 import file_reader as fr
 import file_writer as fw
 
-import os 
-
-dirname = os.path.dirname(__file__)
-file_path = os.path.join(dirname, 'files\\tasks.txt')
-
-
 def tasks():
     '''Default Entry To View / Add Tasks'''
     running = True
@@ -25,11 +19,11 @@ Welcome Mathew
         choice = input()
 
         if choice == str(1): 
-            fr.print_tasks(file_path)
+            fr.print_tasks()
         if choice == str(2):
-            fw.add_task(file_path)
+            fw.add_task()
         if choice == str(3):
-            fw.del_task(file_path)
+            fw.del_task()
         if choice == str(4):
             break
 

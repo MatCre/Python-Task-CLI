@@ -1,7 +1,10 @@
 '''File Reading / Writting functionality'''
-        
-def print_tasks(file_path):
+
+import path_finder
+
+def print_tasks():
     '''View Todays Tasks'''
+    file_path = path_finder.tasks_file_path
     try:
         with open(file_path, "r") as file:
             print("Current tasks in file: ")
@@ -10,8 +13,9 @@ def print_tasks(file_path):
     except FileNotFoundError:
         print("No Task File Yet Created")
 
-def get_tasks_from_file(file_path):
+def get_tasks_from_file():
     '''Get tasks from daily task file'''
+    file_path = path_finder.tasks_file_path
     tasks = []
     try:
         with open(file_path, "r") as file:

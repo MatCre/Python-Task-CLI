@@ -6,29 +6,20 @@ import file_writer as fw
 import report_writer as rw
 import path_finder
 
-def parse_list(list):
-    '''Parse List'''
-    my_str = ''''''
-    for i in list:
-        my_str += (f"\t{i}\n")
-
-    return my_str
-
 def run_daily():
     '''Run a daily check on the status of tasks in the tasks file for this day'''
-    tasks_list = fr.get_tasks_from_file(path_finder.tasks_file_path)
-
-    print(tasks_list)
-
-    complete, incomplete = get_task_results(tasks_list)
-
-    report = f"Completed {len(complete)} out of {len(tasks_list)} tasks\n Complete:\n{parse_list(complete)}\n Incomplete:\n{parse_list(incomplete)}"
-    
-    rw.write_daily_report(report)
+    user_report = get_task_results()
+    report_string = rw.write_daily_report(user_report)
+    try:
+        with open(path_finder.weekly_report_path, 'a+') as file:
+            file.write(report_string)
+    except FileNotFoundError:
+        print("File not found")
 
 
-def get_task_results(tasks_list):
+def get_task_results():
     '''Split the tasks into an complete and incomplete list after prompting the user'''
+    tasks_list = fr.get_tasks_from_file()
     completed_tasks = []
     incomplete_tasks = []
     for i,v in enumerate(tasks_list):

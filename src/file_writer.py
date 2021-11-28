@@ -1,5 +1,4 @@
 from file_reader import get_tasks_from_file
-from week_string import week_start_string
 import path_finder as my_paths
        
 def write_list_to_file(task_list):
@@ -22,7 +21,7 @@ def write_list_to_file(task_list):
 def add_task():
     '''Add A Task'''
     
-    tasks = get_tasks_from_file(my_paths.tasks_file_path)
+    tasks = get_tasks_from_file()
 
     try :
         while True:
@@ -43,7 +42,7 @@ def add_task():
     
 def del_task():
     '''Remove a task from current task list'''
-    tasks = get_tasks_from_file(my_paths.tasks_file_path)
+    tasks = get_tasks_from_file()
 
     while True:
         try:

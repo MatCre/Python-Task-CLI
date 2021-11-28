@@ -1,27 +1,3 @@
-On Monday you completed 2 out of 3 tasks
-
-COMPLETE: Meditate, Workout, 
-INCOMPLETE: Web Apps Video, On Tuesday you completed 1 out of 3 tasks
-
-COMPLETE: Meditate, 
-INCOMPLETE: Workout, Web Apps Video, On Sunday Completed 2 out of 4 tasks
- Complete:
-	Workout
-	Meditate
-
- Incomplete:
-	OLT Card
-	WEB Apps Vi
-
-On Sunday Completed 2 out of 4 tasks
- Complete:
-	Workout
-	Meditate
-
- Incomplete:
-	OLT Card
-	WEB Apps Vi
-
 On Sunday Completed 2 out of 4 tasks
  Complete:
 	Workout

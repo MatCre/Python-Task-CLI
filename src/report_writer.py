@@ -1,19 +1,18 @@
 '''Task tasks and creates report strings'''
 from datetime import datetime
-import path_finder
-from file_writer import get_tasks_from_file
-from week_string import week_start_string
+import file_writer as fw
+import file_reader as fr
+from helpers import parse_list, week_start_string
 
 def write_daily_report(report):
     '''Take daily task report and write to weekly report file'''
+    tasks_list = fr.get_tasks_from_file()
 
+    complete, incomplete = report
+
+    report = f"Completed {len(complete)} out of {len(tasks_list)} tasks\n Complete:\n{parse_list(complete)}\n Incomplete:\n{parse_list(incomplete)}"
     day = datetime.today().strftime('%A')
-        
-    try:
-        with open(path_finder.weekly_report_path, "a+") as file:
-            file.write(f"On {day} {report}\n")
-    except FileNotFoundError:
-        print("File Not Found")
+    return f"On {day} {report}\n"
 
 
 def write_week_report(week_report):
