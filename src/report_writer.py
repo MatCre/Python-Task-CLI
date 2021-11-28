@@ -1,22 +1,19 @@
 '''Task tasks and creates report strings'''
 from datetime import datetime
+import path_finder
 from file_writer import get_tasks_from_file
 from week_string import week_start_string
 
-def write_daily_report(path):
+def write_daily_report(report):
     '''Take daily task report and write to weekly report file'''
+
     day = datetime.today().strftime('%A')
-    tasks = get_tasks_from_file(path)
-    task_breakdown_string = ""
-    for task in tasks:
-        task_breakdown_string += f"\n{task.upper()}: "
         
-    # try:
-    #     with open("./files/weekly_report.txt", "a+") as file:
-    #         file.write(f"On {day} {daily_report}\n")
-    #         file.write(task_breakdown_string)
-    # except FileNotFoundError:
-    #     print("File Not Found")
+    try:
+        with open(path_finder.weekly_report_path, "a+") as file:
+            file.write(f"On {day} {report}\n")
+    except FileNotFoundError:
+        print("File Not Found")
 
 
 def write_week_report(week_report):
