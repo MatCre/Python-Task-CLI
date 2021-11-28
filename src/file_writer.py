@@ -60,3 +60,10 @@ def del_task():
     
     write_list_to_file(tasks)
 
+def clear_file():
+    try:
+        with open(my_paths.tasks_file_path, "w") as file:
+            print(f"Clearing task file from {file}")
+    except FileNotFoundError:
+        print("File Not Found")
+    

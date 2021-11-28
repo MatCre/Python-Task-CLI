@@ -13,8 +13,10 @@ def run_daily():
     try:
         with open(path_finder.weekly_report_path, 'a+') as file:
             file.write(report_string)
+        fw.clear_file()
     except FileNotFoundError:
         print("File not found")
+    
 
 
 def get_task_results():
