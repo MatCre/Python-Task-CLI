@@ -13,12 +13,11 @@ def print_tasks():
     except FileNotFoundError:
         print("No Task File Yet Created")
 
-def get_tasks_from_file():
+def get_tasks_from_file(path):
     '''Get tasks from daily task file'''
-    file_path = path_finder.tasks_file_path
     tasks = []
     try:
-        with open(file_path, "r") as file:
+        with open(path, "r") as file:
             for line in file:
                 task = line[:-1].strip()
                 tasks.append(task)

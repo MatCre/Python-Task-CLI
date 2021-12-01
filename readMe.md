@@ -9,6 +9,6 @@ Wrtie a programme that triggers everyday at a certain time to check if i have co
 
 ## To Do
 
-1. Add ability to delete tasks in command line
+1. ~~Add ability to delete tasks in command line~~
 2. Add task carry over in daily check
 3. Automaticly add habit tasks per day of the week
